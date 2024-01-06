@@ -46,6 +46,8 @@ class UserController {
       }
 
       user.password = await bcrypt.hash(user.password, 10);
+      user.dateCreated = new Date();
+      user.dateUpdated = new Date();      
 
       const createdUser = await User.create(user);
 
@@ -67,6 +69,8 @@ class UserController {
     if ((await User.findOne({ where: { id: id } })) == null) {
       return res.sendStatus(404);
     }
+
+    user.dateUpdated = new Date();
 
     try {
       await User.update(user, { where: { id: id } });
