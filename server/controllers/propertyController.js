@@ -1,7 +1,7 @@
-const { Property } = require('../models/models');
+const { Property, PropertyType } = require('../models/models');
 
 class PropertyController {
-    async getAllProperties(req, res) {
+    async getAll(req, res) {
         try {
             const properties = await Property.findAll();
     
@@ -14,7 +14,24 @@ class PropertyController {
         }
     }
 
-    async getProperty(req, res) {
+    async getCatalogPropertiesByType(req, res) {
+        try {
+            const { propertyTypeId } = req.params;
+
+            const properties = await Property.findAll({
+                where: { IsSold: false, propertyTypeId: propertyTypeId }
+            });
+    
+            return res.json(properties);
+        }
+        catch (err) {
+            console.error(err);
+
+            return res.sendStatus(500).json({ error: 'Ошибка сервера.' });
+        }
+    }
+
+    async getOne(req, res) {
         const { propertyId } = req.params;
     
         try {
@@ -69,10 +86,7 @@ class PropertyController {
 
     async createProperty(req, res) {
         try {
-            const property = { ...req.body };
-
-            property.dateCreated = new Date();
-            property.dateUpdated = property.dateCreated;      
+            const property = { ...req.body };    
     
             const createdProperty = await Property.create(property);
     
@@ -97,8 +111,6 @@ class PropertyController {
         if ((await User.findOne({ where: { propertyId: propertyId } })) == null) {
             return res.sendStatus(404);
         }
-    
-        property.dateUpdated = new Date();
     
         try {
             await User.update(property, { where: { propertyId: propertyId } });
