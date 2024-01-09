@@ -1,9 +1,5 @@
-const { User, Basket } = require("../models/models");
+const { User } = require("../models/models");
 const bcrypt = require("bcrypt");
-const fs = require("fs");
-const path = require("path");
-const { Sequelize, Op, Model, DataTypes, where } = require('sequelize');
-
 
 class UserController {
     async getAll(req, res) {
