@@ -60,9 +60,8 @@ class AuthController {
             const { email } = { ...req.body };
 
             const user = await User.findOne({ where: { email: email } });
-            const company = await Company.findOne({ where: { email: email } });
 
-            if (!user && !company) {
+            if (!user) {
                 return res.status(200).json({ available: true });
             }
 
