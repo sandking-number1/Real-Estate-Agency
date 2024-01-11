@@ -5,8 +5,6 @@ import { Typography } from '@material-ui/core';
 import { registerUser } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 import logo from "./img/logo.png";
-import back from "./img/back.png";
-import uploadIcon from "./img/photoUploud.png";
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -15,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     height: '100vh',
     width: '100vw',
-    backgroundImage: `url(${back})`,
     backgroundSize: 'cover',
   },
   form: {
@@ -81,7 +78,6 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)',
     width: '120px',
     height: '120px',
-    backgroundImage: `url(${uploadIcon})`,
     backgroundSize: 'cover',
   },
   uploadButton: {
@@ -119,10 +115,10 @@ const PersonalInfoForm = ({userData, setUserData}) => {
 
     setUserData(prevUserData => ({
       ...prevUserData,
-      name: firstName,
-      surname: lastName,
+      firstName: firstName,
+      lastName: lastName,
       phone: phone,
-      birth_date: birthdate,
+      birthDate: birthdate,
     }));
     
 

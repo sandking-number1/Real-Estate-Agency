@@ -7,10 +7,10 @@ const RegistrationPage = () => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
-    name: '',
-    surname: '',
+    firstName: '',
+    lastName: '',
     phone: '',
-    birth_date: '',
+    birthDate: '',
   });
 
   const handleNext = () => {

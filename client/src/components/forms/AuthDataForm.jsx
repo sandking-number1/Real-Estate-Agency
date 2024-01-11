@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextField, Button } from '@material-ui/core';
 import logo from "./img/logo.png";
-import back from "./img/back.png";
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -11,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     height: '100vh',
     width: '100vw',
-    backgroundImage: `url(${back})`,
     backgroundSize: 'cover',
   },
   form: {

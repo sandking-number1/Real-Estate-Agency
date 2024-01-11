@@ -31,16 +31,16 @@ const AppRouter = () => {
         );
     }
 
-    if ((token && localStorage.getItem("role") === "admin") || (tokenSession && sessionStorage.getItem("admin") === "user")) {
-         return (
-             <Routes>
-                 {adminRoutes.map(({ path, Component }) => (
-                     <Route key={path} path={path} element={<Component />} exact />
-                 ))}
-                 <Route key="*" path="*" element={<Navigate to={ADMIN_ORDERS_ROUTE} />} />
-             </Routes>
-         );
-         }
+    // if ((token && localStorage.getItem("role") === "admin") || (tokenSession && sessionStorage.getItem("admin") === "user")) {
+    //      return (
+    //          <Routes>
+    //              {adminRoutes.map(({ path, Component }) => (
+    //                  <Route key={path} path={path} element={<Component />} exact />
+    //              ))}
+    //              <Route key="*" path="*" element={<Navigate to={ADMIN_ORDERS_ROUTE} />} />
+    //          </Routes>
+    //      );
+    //      }
 
     if (!token || !tokenSession) {
         return (

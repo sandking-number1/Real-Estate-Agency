@@ -4,7 +4,6 @@ import { TextField, Button, Checkbox,  FormControlLabel} from '@material-ui/core
 import { Link } from "react-router-dom";
 import { login } from "../api/authApi";
 import logo from "./img/logo.png";
-import back from "./img/back.png";
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -13,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     height: '100vh',
     width: '100vw',
-    backgroundImage: `url(${back})`,
     backgroundSize: 'cover',
   },
   form: {

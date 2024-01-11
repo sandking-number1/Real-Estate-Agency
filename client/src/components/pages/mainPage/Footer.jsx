@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import logo from "../img/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -18,17 +20,29 @@ const useStyles = makeStyles({
     display: 'flex',
     flexFlow: 'column wrap',
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    cursor: 'pointer',
+    height: '100%',
+    '& img': {
+        width: 'auto',
+        height: '25%'
+    }
+  },
 });
 
 const Footer = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <div className={classes.root}>
-        <div className={classes.logo}>
-            <img src="../img/logo.png" alt="" />
+        <div className={classes.logo}
+        onClick={() => {
+            navigate("/main");
+            window.location.reload()
+          }}
+          >
+            <img src={logo} alt="" />
             <p className={classes.text}>Rental Estate Agency</p>
         </div>
     </div>
