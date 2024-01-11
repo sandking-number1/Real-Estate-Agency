@@ -57,20 +57,20 @@ const Deal = sequelize.define('Deal', {
     isSold: { type: DataTypes.BOOLEAN, allowNull: false},
 });
 
-Property.hasOne(PropertyType);
-PropertyType.belongsTo(Property);
+Property.belongsTo(PropertyType);
+PropertyType.hasMany(Property);
 
 Property.belongsToMany(User, { through: Deal });
 User.belongsToMany(Property, { through: Deal });
 
-Review.hasOne(User);
-User.belongsTo(Review);
+Review.belongsTo(User);
+User.hasMany(Review);
 
-Image.hasOne(Property);
-Property.belongsTo(Image);
+Image.belongsTo(Property);
+Property.hasMany(Image);
 
-Contact.hasOne(ContactType);
-ContactType.belongsTo(Contact);
+Contact.belongsTo(ContactType);
+ContactType.hasMany(Contact);
 
 module.exports = {
     User,
