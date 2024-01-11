@@ -1,9 +1,9 @@
-const { Contact } = require('../models/models');
+const { Contact, ContactType } = require('../models/models');
 
 class ContactController {
     async getAll(req, res) {
         try {
-            const contacts = await Contact.findAll();
+            const contacts = await Contact.findAll({ include: ContactType });
 
             return res.json(contacts);
         }
