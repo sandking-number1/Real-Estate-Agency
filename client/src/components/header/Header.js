@@ -36,7 +36,7 @@ const Header = () => {
 
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#F8F8F8" }}>
+    <AppBar position="static" elevation={0} style={{ backgroundColor: "#F8F8F8" }}>
       <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
         {/* Лого */}
         <div 
