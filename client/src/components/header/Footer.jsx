@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import logo from "../img/logo.png";
+import logo from "./logo.png";
 import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
