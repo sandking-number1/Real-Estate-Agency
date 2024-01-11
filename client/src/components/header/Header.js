@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, IconButton } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <AppBar position="static" style={{ backgroundColor: "#F8F8F8" }}>
-      <Toolbar>
+      <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
         {/* Лого */}
         <div 
           onClick={() => {
@@ -46,8 +46,8 @@ const Header = () => {
           }}
           style={{
             backgroundImage: `url(${logo})`,
-            width: "206px",
-            height: "21.5vh",
+            width: "130px",
+            height: "80px",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -56,9 +56,57 @@ const Header = () => {
           }} 
         />
 
+        {/* Кнопки */}
+        <div>
+            {/*Каталог*/}
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/properties");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none',
+            fontFamily: 'Open Sans'
+          }}  >
+            Недвижимость
+          </Button>
+
+          {/*Отзывы*/}
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/reviews");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none',
+            fontFamily: 'Open Sans'
+          }} >
+            Отзывы
+          </Button>
+
+          {/*Контакты*/}
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/contacts");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none',
+            fontFamily: 'Open Sans'
+          }} >
+            Контакты
+          </Button>
+        </div>
+
 
         {/* Иконки */}
-        <div style={{ marginLeft: "auto" }}>
+        <div style={{ }}>
           {/* Профиль */}
           <IconButton color="inherit" onClick={() => {
             navigate("/profile");
