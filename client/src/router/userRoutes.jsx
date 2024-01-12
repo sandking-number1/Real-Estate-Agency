@@ -1,5 +1,6 @@
 import MainPage from "../components/pages/MainPage";
 import ContactsPage from "../components/pages/ContactsPage";
+import ProfilePage from "../components/pages/ProfilePage";
 import ReviewsPage from "../components/pages/ReviewsPage";
 import PropertiesPage from "../components/pages/PropertiesPage";
 
@@ -7,6 +8,10 @@ export const userRoutes = [
     {
         path: "/main",
         Component: MainPage,
+    },
+    {
+        path: "/profile",
+        Component: ProfilePage,
     },
     {
         path: "/contacts",

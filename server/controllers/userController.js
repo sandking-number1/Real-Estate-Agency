@@ -45,7 +45,7 @@ class UserController {
 
     async getProfile(req, res) {
         const id = req.userId;
-
+        console.log(id);
         if (isNaN(id)) {
             return res.sendStatus(400);
         }
