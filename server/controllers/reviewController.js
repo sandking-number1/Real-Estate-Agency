@@ -1,8 +1,8 @@
-const { Review } = require('../models/models');
+const { Review, User } = require('../models/models');
 
 class ReviewController {
     async createReview(req, res) {
-        const { review } = req.body;
+        const review  = { ...req.body };
 
         try {
             Review.create(review);
@@ -18,7 +18,7 @@ class ReviewController {
 
   async getAllReviews(req, res) {
         try {
-            const reviews = await Review.findAll();
+            const reviews = await Review.findAll({ include: User });
 
             return res.json(reviews);
         }
