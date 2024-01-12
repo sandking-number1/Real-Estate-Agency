@@ -30,11 +30,6 @@ const Review = sequelize.define('Review', {
     description: {type: DataTypes.STRING, allowNull: false}
 });
 
-const Image = sequelize.define('Image', {
-    Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    image: {type: DataTypes.BLOB('long'), allowNull: false}
-});
-
 const Admin = sequelize.define('Admin', {
     Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, unique: true, allowNull: false },
@@ -66,9 +61,6 @@ User.belongsToMany(Property, { through: Deal });
 Review.belongsTo(User);
 User.hasMany(Review);
 
-Image.belongsTo(Property);
-Property.hasMany(Image);
-
 Contact.belongsTo(ContactType);
 ContactType.hasMany(Contact);
 
@@ -78,7 +70,6 @@ module.exports = {
     PropertyType,
     Deal,
     Contact,
-    Image,
     Review,
     ContactType,
     Admin

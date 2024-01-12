@@ -1,9 +1,11 @@
 const { Property, PropertyType } = require('../models/models');
+const path = require("path");
+const fs = require("fs");
 
 class PropertyController {
     async getAll(req, res) {
         try {
-            const properties = await Property.findAll();
+            const properties = await Property.findAll({ include: PropertyType });
     
             return res.json(properties);
         }
@@ -19,7 +21,8 @@ class PropertyController {
             const { propertyTypeId } = req.params;
 
             const properties = await Property.findAll({
-                where: { IsSold: false, propertyTypeId: propertyTypeId }
+                where: { IsSold: false, propertyTypeId: propertyTypeId },
+                include: PropertyType
             });
     
             return res.json(properties);
@@ -53,7 +56,8 @@ class PropertyController {
     async getCatalogProperties(req, res) {
         try {
             const properties = await Property.findAll({
-                where: { isSold: false }
+                where: { isSold: false },
+                include: PropertyType
             });
     
             return res.json(properties);
@@ -121,6 +125,27 @@ class PropertyController {
             console.error(err);
 
             return res.status(500).json({ error: 'Ошибка сервера.' });
+        }
+    }
+
+    async getAvatar(req, res) {
+        try {
+            const { id } = req.params;
+    
+            if (isNaN(id)) {
+                return res.sendStatus(400);
+            }
+    
+            const imagePath = path.join(__dirname, "../", "avatars", id + ".JPG");
+    
+            if (!fs.existsSync(imagePath)) {
+                return res.sendStatus(204);
+            }
+    
+            return res.sendFile(imagePath);
+        } catch (err) {
+            console.log(err);
+            return res.sendStatus(500);
         }
     }
 }
