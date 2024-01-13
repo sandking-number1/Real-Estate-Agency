@@ -27,24 +27,22 @@ const CatalogSection = () => {
       borderRadius="4px"
       boxShadow={1}
     >
-        <Typography variant='h3'>
-            Поиск предложения
-        </Typography>
+      <Typography variant="h3">Поиск предложения</Typography>
       <Box
         style={{
-            width: '100%',
-            padding: '15px',
-            display: 'flex',
-            alignItems: 'space-between',
-            justifyContent: 'flex-start',
-            flexWrap: 'wrap',
-            flexDirection: 'row'    
+          width: '100%',
+          padding: '15px',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          flexDirection: 'row'
         }}
       >
         {properties.length > 0 ? (
           properties.map(property => {
-            return <PropertyCard propertyData={property}/>
-        })
+            return <PropertyCard propertyData={property} />;
+          })
         ) : (
           <Typography variant="body1" align="center" color={'Black'}>
             Нет доступных предложений.
