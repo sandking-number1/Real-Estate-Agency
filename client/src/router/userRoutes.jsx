@@ -3,6 +3,7 @@ import ContactsPage from "../components/pages/ContactsPage";
 import ProfilePage from "../components/pages/ProfilePage";
 import ReviewsPage from "../components/pages/ReviewsPage";
 import PropertiesPage from "../components/pages/PropertiesPage";
+import PropertyPage from "../components/pages/PropertyPage";
 
 export const userRoutes = [
     {
@@ -27,6 +28,6 @@ export const userRoutes = [
     },
     {
         path: "/properties/:id",
-        Component: PropertiesPage,
+        Component: PropertyPage,
     },
 ];
