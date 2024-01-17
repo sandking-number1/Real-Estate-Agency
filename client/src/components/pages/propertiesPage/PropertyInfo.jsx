@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Box, Typography, Button } from '@material-ui/core';
-import { getProfile } from "../../api/userApi";
 import { createDeal } from "../../api/dealsApi";
 
 const PropertyInfo = () => {
@@ -10,45 +9,22 @@ const PropertyInfo = () => {
   const navigate = useNavigate();
   const [property, setProperty] = useState({});
   const [avatarUrl, setAvatarUrl] = useState('');
-  const [dealData, setDealData] = useState({});
-  const [userData, setUserData] = useState({});
+  const [userId, setUserId] = useState(localStorage.getItem('id'));
 
   const createDealHandler = async () => {
-        const userDataResponse = await getProfile();
-  
-        if (!userDataResponse) {
-          console.log("Сервис временно недоступен");
-          return;
+        const response = await createDeal({
+            isClosed: false,
+            isSold: false,
+            PropertyId: id,
+            UserId: userId
+        });
+        
+        if(response.status===201) {
+            navigate('/profile');
+            alert("Сделка добавлена");
+        }else{
+            alert("Сделка на эту собственность уже существует");
         }
-  
-        if (userDataResponse.status === 401) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("role");
-          sessionStorage.removeItem("token");
-          sessionStorage.removeItem("role");
-          window.location.reload();
-          return;
-        }
-  
-        if (userDataResponse.status >= 300) {
-          console.log("Ошибка при загрузке профиля. Код: " + userDataResponse.status);
-          console.log(userDataResponse);
-          return;
-        }
-  
-        setUserData(userDataResponse.data);
-
-    setDealData({
-        ...dealData,
-        isClosed: false,
-        isSold: false,
-        PropertyId: id,
-        UserId: userData.Id
-      });
-
-      createDeal(dealData);
-
-      navigate('profile');
   };
 
   const fetchProperty = async () => {
@@ -73,8 +49,6 @@ const PropertyInfo = () => {
 
     
   }, [id]);
-
-  console.log(JSON.stringify(property, null, 2));
 
   if (Object.keys(property).length === 0) {
     return <div>Loading...</div>;
