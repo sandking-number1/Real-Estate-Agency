@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Header from '../header/Header';
 import { Button, Grid, TextField } from '@mui/material';
 import { getProfile, updateUserInfo, } from "../api/userApi";
+import DealsSection from "./profilePage/DealsSection";
+import CompletedSection from "./profilePage/CompletedSection";
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -142,6 +144,8 @@ const Profile = () => {
           </Button>
         </Grid>
       </Grid>
+      <DealsSection/>
+      <CompletedSection/>
     </div>
   );
 };
