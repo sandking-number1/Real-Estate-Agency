@@ -1,8 +1,8 @@
 import host from ".";
 
-const getProfile = async () => {
+const getProfile = async (id) => {
     try {
-        const response = await host.get("/api/user");
+        const response = await host.get(`/profile/user/${id}`, id);
 
         return response;
     } catch (error) {
@@ -18,7 +18,7 @@ const getProfile = async () => {
 
 const updateUserInfo = async (id, userData) => {
     try {
-        const response = await host.put(`/api/user/update/${id}`, userData);
+        const response = await host.put(`/profile/update/${id}`, userData);
 
         return response;
     } catch (error) {

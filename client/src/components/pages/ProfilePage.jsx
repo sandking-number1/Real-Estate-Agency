@@ -8,10 +8,12 @@ const Profile = () => {
   const [userData, setUserData] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [editedData, setEditedData] = useState({});
+  const [userId, setUserId] = useState(localStorage.getItem('id'));
 
   useEffect(() => {
     const loadData = async () => {
-        const response = await getProfile();
+        console.log(userId);
+        const response = await getProfile(userId);
 
         if (!response) {
             console.log("Сервис временно недоступен");
@@ -42,7 +44,7 @@ const Profile = () => {
 
   const handleEdit = async () => {
     if (editMode) {
-     const response = await updateUserInfo(userData.id, editedData);
+     const response = await updateUserInfo(userData.Id, editedData);
 
     setUserData(editedData);
     setEditMode(false);
@@ -64,8 +66,8 @@ const Profile = () => {
           <TextField
             label="Имя"
             fullWidth
-            name="name"
-            value={editMode ? editedData.name || '' : userData.name || ''}
+            name="firstName"
+            value={editMode ? editedData.firstName || '' : userData.firstName || ''}
             onChange={handleChange}
             margin="normal"
             disabled={!editMode}
@@ -78,8 +80,8 @@ const Profile = () => {
           <TextField
             label="Фамилия"
             fullWidth
-            name="surname"
-            value={editMode ? editedData.surname || '' : userData.surname || ''}
+            name="lastName"
+            value={editMode ? editedData.lastName || '' : userData.lastName || ''}
             onChange={handleChange}
             margin="normal"
             disabled={!editMode}
@@ -121,21 +123,7 @@ const Profile = () => {
             label="Дата рождения"
             fullWidth
             name="birth_date"
-            value={editMode ? (editedData.birth_date || '').split('T')[0] : (userData.birth_date || '').split('T')[0]}
-            onChange={handleChange}
-            margin="normal"
-            disabled={!editMode}
-            InputProps={{
-              style: {
-                color: 'black'
-              }
-            }}
-          />
-          <TextField
-            label="Описание профиля"
-            fullWidth
-            name="description"
-            value={editMode ? editedData.description || '' : userData.description || ''}
+            value={editMode ? (editedData.birthDate || '').split('T')[0] : (userData.birthDate || '').split('T')[0]}
             onChange={handleChange}
             margin="normal"
             disabled={!editMode}

@@ -90,10 +90,12 @@ const LoginPage = () => {
         // Save token to local storage for persistent session
         localStorage.setItem('token', response.data.token);
         localStorage.setItem("role", response.data.role);
+        localStorage.setItem("id", response.data.id);
       } else {
         // Save token to session storage for one session
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem("role", response.data.role);
+        localStorage.setItem("id", response.data.id);
       }
       
       window.location.reload();

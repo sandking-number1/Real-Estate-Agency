@@ -14,7 +14,6 @@ const PropertyInfo = () => {
   const [userData, setUserData] = useState({});
 
   const createDealHandler = async () => {
-        console.log(localStorage.getItem('id'));
         const userDataResponse = await getProfile();
   
         if (!userDataResponse) {

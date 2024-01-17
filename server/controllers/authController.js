@@ -29,14 +29,14 @@ class AuthController {
                         expiresIn: "5h",
                     });
     
-                    res.status(200).json({ token: token, role: "user" });
+                    res.status(200).json({ token: token, role: "user", id: user.Id });
                 }
 
                 const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, {
                     expiresIn: "1h",
                 });
 
-                res.status(200).json({ token: token, role: "user" });
+                res.status(200).json({ token: token, role: "user", id: user.Id });
             } else if (admin){
                 const passwordMatch = await bcrypt.compare(password, admin.password);
 
