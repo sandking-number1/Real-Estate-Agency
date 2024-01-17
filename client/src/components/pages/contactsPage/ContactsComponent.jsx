@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, ListItem } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import contactsImage from "../img/contacts.jpg";
 import { getContacts } from "../../api/contactsApi";
 

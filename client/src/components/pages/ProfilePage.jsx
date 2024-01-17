@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../header/Header';
-import { Avatar, Button, Typography, Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
 import { getProfile, updateUserInfo, } from "../api/userApi";
-import axios from 'axios';
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -44,7 +43,7 @@ const Profile = () => {
 
   const handleEdit = async () => {
     if (editMode) {
-     const response = await updateUserInfo(userData.Id, editedData);
+     await updateUserInfo(userData.Id, editedData);
 
     setUserData(editedData);
     setEditMode(false);
