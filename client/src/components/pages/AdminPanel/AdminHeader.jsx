@@ -68,7 +68,6 @@ const Header = () => {
             color: 'black',
             fontSize: '15pt',
             textTransform: 'none',
-            fontFamily: 'Open Sans'
           }}  >
             Недвижимость
           </Button>
@@ -83,7 +82,6 @@ const Header = () => {
             color: 'black',
             fontSize: '15pt',
             textTransform: 'none',
-            fontFamily: 'Open Sans'
           }} >
             Отзывы
           </Button>
@@ -98,7 +96,6 @@ const Header = () => {
             color: 'black',
             fontSize: '15pt',
             textTransform: 'none',
-            fontFamily: 'Open Sans'
           }} >
             Контакты
           </Button>
