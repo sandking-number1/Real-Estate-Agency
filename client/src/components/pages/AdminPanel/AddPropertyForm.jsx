@@ -160,6 +160,11 @@ const PersonalInfoForm = () => {
           className={classes.button}
           variant="contained"
           onClick={handleCreateProperty}
+          style={
+            {
+                backgroundColor: "#1C3988"
+            }
+          }
         >
           Готово
         </Button>

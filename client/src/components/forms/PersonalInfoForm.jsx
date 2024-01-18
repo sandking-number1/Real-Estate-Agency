@@ -184,6 +184,11 @@ const PersonalInfoForm = ({userData, setUserData}) => {
         <Button
           className={classes.button}
           variant="contained"
+          style={
+            {
+                backgroundColor: "#1C3988"
+            }
+          }
           onClick={handleRegister}
         >
           Готово

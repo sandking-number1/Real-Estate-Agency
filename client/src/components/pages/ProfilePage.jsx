@@ -137,7 +137,7 @@ const Profile = () => {
           <Button
             variant="contained"
             color="primary"
-            style={{ backgroundColor: '#FED84C', marginTop: '16px', float: 'right' }}
+            style={{ backgroundColor: '#1C3988', marginTop: '16px', float: 'right' }}
             onClick={handleEdit}
           >
             {editMode ? 'Готово' : 'Редактировать'}

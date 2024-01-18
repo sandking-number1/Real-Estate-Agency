@@ -37,10 +37,10 @@ const MainInfo = () => {
       <div class={classes.root}>
         <div class={classes.container}>
             <div class={classes.left}>
-                <Typography variant='h1'>
+                <Typography variant='h1' style={{ fontFamily: "'Helvetica', 'Arial', sans-serif"}}>
                 Современная жизнь для каждого
                 </Typography>
-                <Typography variant='h5'>
+                <Typography variant='h5' style={{ fontFamily: "'Helvetica', 'Arial', sans-serif"}}>
                 Мы предоставляем комплекс услуг по продаже и покупке недвижимости. Мы работаем на территории Республики Беларусь более 15 лет.
                 </Typography>
             </div>

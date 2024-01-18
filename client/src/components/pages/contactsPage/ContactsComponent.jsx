@@ -78,11 +78,11 @@ const ContactsComponent = () => {
             </div>
 
             <div class={classes.right}>
-                <Typography variant='h2'>
+                <Typography variant='h2' style={{ fontFamily: "'Helvetica', 'Arial', sans-serif"}}>
                 Связаться с нами
                 </Typography>
 
-                <Typography variant='body'>
+                <Typography variant='body' style={{ fontFamily: "'Helvetica', 'Arial', sans-serif"}}>
                 Возникла проблема? Мы постараемся ее решить.
                 </Typography>
 

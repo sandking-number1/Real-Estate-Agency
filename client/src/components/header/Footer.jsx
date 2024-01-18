@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
+    fontFamily: "'Helvetica', 'Arial', sans-serif",
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

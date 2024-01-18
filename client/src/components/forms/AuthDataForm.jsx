@@ -120,6 +120,11 @@ const AuthDataForm = ({ onNext, setUserData }) => {
         />
         <Button
           className={classes.button}
+          style={
+            {
+                backgroundColor: "#1C3988"
+            }
+          }
           variant="contained"
           type="submit"
         >
