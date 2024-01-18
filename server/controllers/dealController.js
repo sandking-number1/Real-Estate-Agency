@@ -93,6 +93,76 @@ class DealController {
             return res.status(500).json({ error: 'Ошибка сервера' });
         }
     }
+
+    async close(req, res) {
+        try {
+          const { id } = req.params;
+      
+          const deal = await Deal.findOne({
+            where: { Id: id }
+          });
+      
+          deal.isClosed = true;
+      
+          const updatedDeal = {
+            isClosed: true
+          };
+      
+          await Deal.update(updatedDeal, {
+            where: { Id: id }
+          });
+      
+
+
+          // Return the updated deal
+          return res.json(deal);
+        } catch (err) {
+          console.log(err);
+          return res.status(500).json({ error: 'Ошибка сервера' });
+        }
+      }
+
+    async sell(req, res) {
+        try {
+          const { id } = req.params;
+          console.log(id);
+      
+          const deal = await Deal.findOne({
+            where: { Id: id }
+          });
+          console.log(deal);
+      
+          const property = await Property.findOne({
+            where: { Id: deal.PropertyId }
+          });
+          console.log(property);
+      
+          const updatedDeal = {
+            isClosed: true,
+            isSold: true
+          };
+      
+          const updatedProperty = {
+            isSold: true
+          };
+      
+          await Deal.update(updatedDeal, {
+            where: { Id: id }
+          }).then((result) => {
+            console.log(`Updated ${result[0]} row(s)`);
+          });
+      
+          await Property.update(updatedProperty, {
+            where: { Id: deal.PropertyId }
+          });
+
+          // Return the updated deal
+          return res.json(deal);
+        } catch (err) {
+          console.log(err);
+          return res.status(500).json({ error: 'Ошибка сервера' });
+        }
+      }
 }
 
 module.exports = new DealController();

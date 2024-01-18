@@ -102,8 +102,21 @@ const Header = () => {
           }} >
             Контакты
           </Button>
-        </div>
 
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/admin-deals");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none',
+            fontFamily: 'Open Sans'
+          }} >
+            Сделки
+          </Button>
+        </div>
 
         {/* Иконки */}
         <div style={{ }}>
