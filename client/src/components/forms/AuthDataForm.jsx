@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
     width: '206px',
     height: '167px',
     backgroundImage: `url(${logo})`,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
   },
   input: {
     marginBottom: '1rem',
