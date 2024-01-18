@@ -73,6 +73,7 @@ const AuthDataForm = ({ onNext, setUserData }) => {
     }
 
     if (password !== confirmPassword) {
+        alert("Пароли не совпадают");
       setPasswordError("Пароли не совпадают");
       return;
     }

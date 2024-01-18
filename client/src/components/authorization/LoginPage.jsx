@@ -84,6 +84,7 @@ const LoginPage = () => {
       }
 
       if (response.status >= 300) {
+        alert("Неверные данные аккаунта");
           console.log("Неверные данные аккаунта");
           return;
       }
