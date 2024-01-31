@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 class PropertyController {
     async getAll(req, res) {
         try {
-            const properties = await Property.findAll({ include: PropertyType });
+            const properties = await Property.findAll({ include: { model: PropertyType  }});
     
             return res.json(properties);
         }
@@ -23,7 +23,7 @@ class PropertyController {
 
             const properties = await Property.findAll({
                 where: { IsSold: false, propertyTypeId: propertyTypeId },
-                include: PropertyType
+                include: { model: PropertyType }
             });
     
             return res.json(properties);
@@ -58,8 +58,8 @@ class PropertyController {
         try {
             const properties = await Property.findAll({
                 where: { isSold: false },
-                include: PropertyType
-            });
+                include: { model: PropertyType } // Include the PropertyType model
+              });
     
             return res.json(properties);
         }
@@ -70,19 +70,22 @@ class PropertyController {
         }
     }
 
-    async getPropertiesByName(req, res) {
+    async filterProperties(req, res) {
         try {
-            const { searchValue } = req.params;
+            const { search, propertyTypeId, price, rooms } = req.query;
 
             const properties = await Property.findAll({
                 where: {
-                isSold: false,
-                name: {
-                [Op.iLike]: `%${searchValue}%`
-                }
-            },
-                include: PropertyType
-            });
+                  isSold: false,
+                  name: {
+                    [Op.iLike]: `%${search}%`,
+                  },
+                  price: price !== '0' ? { [Op.lt]: price } : { [Op.gt]: price },
+                  rooms: rooms !== '0' ? rooms : { [Op.gt]: rooms },
+                  PropertyTypeId: propertyTypeId !== '0' ? propertyTypeId : { [Op.ne]: null },
+                },
+                include: { model: PropertyType },
+              });
     
             return res.json(properties);
         }

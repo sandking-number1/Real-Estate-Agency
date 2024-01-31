@@ -37,6 +37,11 @@ const PropertyCard = ({ propertyData }) => {
           <Typography gutterBottom variant="h5" component="div">
             {propertyData.name}
           </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            ${propertyData.price}
+          </Typography>
+          <Typography variant="body2">Комнат: {propertyData.rooms}</Typography>
+          <Typography variant="body2">{propertyData.PropertyType.name}</Typography>
           <Typography variant="body2">{propertyData.description}</Typography>
         </CardContent>
       </Card>

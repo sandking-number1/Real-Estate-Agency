@@ -16,7 +16,8 @@ const Property = sequelize.define('Property', {
     name: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false },
     price: { type: DataTypes.INTEGER, allowNull: false },
-    isSold: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false}
+    isSold: {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
+    rooms: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 }
 });
 
 const PropertyType = sequelize.define('PropertyType', {
