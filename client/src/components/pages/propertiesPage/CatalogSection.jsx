@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, TextField, Button } from '@mui/material';
 import PropertyCard from './PropertyCard';
 
 const CatalogSection = () => {
   const [properties, setProperties] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
+    getAll();
+  }, []);
+
+  const getAll = () => {
     axios
       .get('/properties')
       .then(response => {
@@ -15,7 +20,30 @@ const CatalogSection = () => {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  };
+
+  const handleSearch = () => {
+    if (searchValue.trim() !== '') {
+      axios
+        .get(`/properties/search/${searchValue}`)
+        .then(response => {
+          setProperties(response.data); // Update properties state with search results
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else {
+      getAll(); // Reset properties state to all properties
+    }
+  };
+
+  const handleInputChange = event => {
+    setSearchValue(event.target.value);
+  };
+
+  useEffect(() => {
+    handleSearch(); // Trigger search on each input change
+  }, [searchValue]);
 
   return (
     <Box
@@ -27,7 +55,24 @@ const CatalogSection = () => {
       borderRadius="4px"
       boxShadow={1}
     >
-      <Typography variant="h3">Поиск предложения</Typography>
+      
+      <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      margin="25px 0px"
+      width="100%"
+    >
+        <Typography variant="h3">Поиск предложения</Typography>
+      <Box display="flex" alignItems="center" width="40%" justifyContent="space-around" margin="25px 0px">
+        <TextField
+            label="Поиск..."
+            variant="outlined"          
+            value={searchValue}
+            onChange={handleInputChange} />
+      </Box>
+    </Box>
       <Box
         style={{
           width: '100%',

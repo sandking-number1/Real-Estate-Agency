@@ -1,6 +1,7 @@
 const { Property, PropertyType } = require('../models/models');
 const path = require("path");
 const fs = require("fs");
+const { Op } = require('sequelize');
 
 class PropertyController {
     async getAll(req, res) {
@@ -57,6 +58,29 @@ class PropertyController {
         try {
             const properties = await Property.findAll({
                 where: { isSold: false },
+                include: PropertyType
+            });
+    
+            return res.json(properties);
+        }
+        catch (err) {
+            console.error(err);
+
+            return res.sendStatus(500).json({ error: 'Ошибка сервера.' });
+        }
+    }
+
+    async getPropertiesByName(req, res) {
+        try {
+            const { searchValue } = req.params;
+
+            const properties = await Property.findAll({
+                where: {
+                isSold: false,
+                name: {
+                [Op.iLike]: `%${searchValue}%`
+                }
+            },
                 include: PropertyType
             });
     
