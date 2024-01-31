@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Typography, TextField, Slider, Select, InputLabel, MenuItem } from '@mui/material';
+import { Box, Typography, TextField, Slider, Select, InputLabel, MenuItem, FormControl } from '@mui/material';
 import PropertyCard from './PropertyCard';
 
 const CatalogSection = () => {
@@ -123,8 +123,8 @@ const CatalogSection = () => {
         value={priceValue}
         onChange={handlePriceChange}
         min={0}
-        max={10000}
-        step={250}
+        max={100000}
+        step={1000}
         marks
         valueLabelDisplay="auto"
         />
@@ -132,11 +132,9 @@ const CatalogSection = () => {
 
 <Box style={{
   "width":"25%",
-  "display": "flex",
-  "justifyContent":"space-between",
-  "alignItems": "center"
 }}>
-<InputLabel id="combo-box-label">Тип:</InputLabel>
+    <FormControl style={{ width: "100%" }}>
+    <InputLabel id="combo-box-label">Тип:</InputLabel>
       <Select
         labelId="combo-box-label"
         value={propertyType}
@@ -151,6 +149,8 @@ const CatalogSection = () => {
           </MenuItem>
         ))}
       </Select>
+    </FormControl>
+
 </Box>
 
 
