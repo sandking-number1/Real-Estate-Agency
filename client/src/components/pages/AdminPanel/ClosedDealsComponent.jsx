@@ -8,7 +8,7 @@ const ClosedDealsComponent = () => {
 
   useEffect(() => {
     axios
-      .get(`/deals/opened`)
+      .get(`/deals/closed`)
       .then(response => {
         setDeals(response.data);
       })
@@ -16,31 +16,6 @@ const ClosedDealsComponent = () => {
         console.error(error);
       });
   }, []);
-
-  const handleSell = (param) => {
-    axios
-      .post(`/deals/sell/${param}`)
-      .then(response => {
-        setDeals(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-      console.log(1);
-      window.location.reload();
-  };
-
-  const handleClose = (param) => {
-    axios
-      .post(`/deals/close/${param}`)
-      .then(response => {
-        setDeals(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-      window.location.reload();
-  };
 
   return (
     <Box
@@ -52,7 +27,7 @@ const ClosedDealsComponent = () => {
       borderRadius="4px"
       boxShadow={1}
     >
-      <Typography variant="h3">Активные сделки</Typography>
+      <Typography variant="h3">Отчет о завершенных сделках</Typography>
       <Box
         style={{
           width: '100%',
@@ -85,7 +60,7 @@ const ClosedDealsComponent = () => {
                   primary={
                     'Данные покупателя'
                   }
-                  secondary={`Id: ${item.UserId}`}
+                  secondary={`Имя: ${item.User.firstName+' '+item.User.lastName}`}
                 />
                 <ListItemText
                   primary={
@@ -93,14 +68,15 @@ const ClosedDealsComponent = () => {
                       Ссылка на предложение&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </Link>
                   }
-                  secondary={`Дата: ${item.createdAt}`}
+                  secondary={`Дата: ${item.updatedAt}`}
                 />
-                <Button variant="contained" color="primary" onClick={() => handleSell(item.Id)}>
-                  Подтвердить
-                </Button>
-                <Button variant="contained" color="secondary" onClick={() => handleClose(item.Id)}>
-                 Отклонить
-                </Button>
+                <ListItemText
+                  primary={
+                    'Стоимость'
+                  }
+                  secondary={`Стоимость: ${'$'+item.Property.price}`}
+                />
+
               </ListItem>
             ))}
           </List>

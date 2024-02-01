@@ -60,8 +60,10 @@ const Favorite = sequelize.define('Favorite', {
 Property.belongsTo(PropertyType);
 PropertyType.hasMany(Property);
 
-Property.belongsToMany(User, { through: Deal });
-User.belongsToMany(Property, { through: Deal });
+User.hasMany(Deal);
+Deal.belongsTo(User);
+Property.hasMany(Deal);
+Deal.belongsTo(Property);
 
 Property.belongsToMany(User, { through: Favorite });
 User.belongsToMany(Property, { through: Favorite });

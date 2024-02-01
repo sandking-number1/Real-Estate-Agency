@@ -102,7 +102,7 @@ class PropertyController {
         try {
             const property = await Property.findByPk(propertyId);
     
-            if (!property || property.isSold == true) {
+            if (!property) {
                 return res.status(404).json({ error: 'Собственность не найдена.' });
             }
     
