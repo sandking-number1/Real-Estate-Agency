@@ -4,6 +4,7 @@ import { TextField, Button, Checkbox, FormControlLabel } from '@material-ui/core
 import { Typography } from '@material-ui/core';
 import { createReview } from "../../api/reviewsApi";
 import { useNavigate } from "react-router-dom";
+import { WindowSharp } from '@mui/icons-material';
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -92,15 +93,9 @@ const NewReviewForm = () => {
   const navigate = useNavigate();
   const [description, setDescription] = useState('');
   const [isPositive, setIsPositive] = useState(true);
-  const [reviewData, setReviewData] = useState({
-    description: description,
-    isPositive: isPositive
-  });
 
 
   const handleReview = (e) => {
-    e.preventDefault();
-    
     if (!description) {
       // Handle empty fields
       return;
@@ -111,12 +106,11 @@ const NewReviewForm = () => {
       console.error(errorMessage);
     };
 
-    setReviewData({
-      description: description,
-      isPositive: isPositive,
-    });
-    console.log(reviewData);
-    createReview(reviewData)
+    createReview({
+        description: description,
+        isPositive: isPositive,
+        UserId: localStorage.getItem('id')
+      })
       .then((response) => {
         if (!response) {
           errorHandler("Сервис временно недоступен");
@@ -127,14 +121,13 @@ const NewReviewForm = () => {
           errorHandler("Ошибка при размещении отзыва. Код: " + response.status);
           return;
         }
-
-        navigate("/reviews");
-        window.location.reload();
       })
       .catch((error) => {
         console.log("Error while creating review:", error);
         // Handle error
       });
+
+      window.location.reload();
   };
 
   return (

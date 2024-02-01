@@ -3,7 +3,7 @@ const { Review, User } = require('../models/models');
 class ReviewController {
     async createReview(req, res) {
         const review  = { ...req.body };
-
+        console.log(review);
         try {
             Review.create(review);
 

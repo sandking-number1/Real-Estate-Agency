@@ -68,7 +68,11 @@ const ClosedDealsComponent = () => {
                       Ссылка на предложение&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </Link>
                   }
-                  secondary={`Дата: ${item.updatedAt}`}
+                  secondary={`Дата: ${new Date(item.updatedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}`}
                 />
                 <ListItemText
                   primary={
