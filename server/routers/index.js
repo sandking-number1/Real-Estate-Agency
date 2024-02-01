@@ -7,6 +7,7 @@ const protectedRouter = require("./protectedRouter");
 const reviewRouter = require("./reviewRouter");
 const contactRouter = require("./contactRouter");
 const dealRouter = require("./dealRouter");
+const favoriteRouter = require("./favoriteRouter");
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.use('/auth', authRouter);
@@ -15,6 +16,7 @@ router.use('/profile', profileRouter);
 router.use('/reviews', reviewRouter);
 router.use('/deals', dealRouter);
 router.use('/contacts', contactRouter);
+router.use('/favorites', favoriteRouter);
 router.use("/api", authMiddleware, protectedRouter);
 
 module.exports = router

@@ -4,6 +4,7 @@ import { Button, Grid, TextField } from '@mui/material';
 import { getProfile, updateUserInfo, } from "../api/userApi";
 import DealsSection from "./profilePage/DealsSection";
 import CompletedSection from "./profilePage/CompletedSection";
+import FavoritesSection from "./profilePage/FavoritesSection";
 
 const Profile = () => {
   const [userData, setUserData] = useState({});
@@ -146,6 +147,7 @@ const Profile = () => {
       </Grid>
       <DealsSection/>
       <CompletedSection/>
+      <FavoritesSection/>
     </div>
   );
 };
