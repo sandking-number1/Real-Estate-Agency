@@ -102,6 +102,20 @@ const Header = () => {
           }} >
             Контакты
           </Button>
+
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/faq");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none',
+            fontFamily: "'Helvetica', 'Arial', sans-serif"
+          }} >
+            FAQ
+          </Button>
         </div>
 
 

@@ -4,6 +4,7 @@ import ProfilePage from "../components/pages/ProfilePage";
 import ReviewsPage from "../components/pages/ReviewsPage";
 import PropertiesPage from "../components/pages/PropertiesPage";
 import PropertyPage from "../components/pages/PropertyPage";
+import FAQPage from "../components/pages/FAQPage";
 
 export const userRoutes = [
     {
@@ -29,5 +30,9 @@ export const userRoutes = [
     {
         path: "/properties/:id",
         Component: PropertyPage,
+    },
+    {
+        path: "/faq",
+        Component: FAQPage,
     },
 ];

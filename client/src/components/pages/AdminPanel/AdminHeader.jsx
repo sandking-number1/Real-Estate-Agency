@@ -111,6 +111,19 @@ const Header = () => {
           }} >
             Сделки
           </Button>
+
+          <Button variant="text" color="inherit"
+          onClick={() => {
+            navigate("/faq");
+            window.location.reload()
+          }}
+          style={{
+            color: 'black',
+            fontSize: '15pt',
+            textTransform: 'none'
+          }} >
+            FAQ
+          </Button>
         </div>
 
         {/* Иконки */}
