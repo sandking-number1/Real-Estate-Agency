@@ -96,7 +96,7 @@ const PropertyInfo = () => {
             PropertyId: id,
             UserId: userId
           });
-          console.log("Я ПИДОРРРР!!!!");
+
           setIsFavorite(true);
         }
       } catch (error) {
@@ -163,6 +163,18 @@ const PropertyInfo = () => {
                     }
                 }>{property.price}$</Typography>
 
+                <Typography variant="h6" style={
+                    {
+                        fontFamily: "system-ui"
+                    }
+                }>{property.PropertyType.name}</Typography>
+
+                <Typography variant="h6" style={
+                    {
+                        fontFamily: "system-ui"
+                    }
+                }>Комнат: {property.rooms}</Typography>
+
                 <Typography variant="body1"
                     style={
                         {
@@ -171,6 +183,8 @@ const PropertyInfo = () => {
                     }>
                     {property.description}
                 </Typography>
+
+                <Typography variant="caption">{new Date(property.updatedAt).toLocaleString()}</Typography>
 
                 <Button variant="contained" onClick={createDealHandler}>
                     Приобрести (с вами свяжутся)

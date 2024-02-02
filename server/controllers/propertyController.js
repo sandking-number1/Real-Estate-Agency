@@ -117,7 +117,10 @@ class PropertyController {
         const { propertyId } = req.params;
     
         try {
-            const property = await Property.findByPk(propertyId);
+            const property = await Property.findOne({
+                where: { Id: propertyId },
+                include: { model: PropertyType }
+              });
     
             if (!property) {
                 return res.status(404).json({ error: 'Собственность не найдена.' });
