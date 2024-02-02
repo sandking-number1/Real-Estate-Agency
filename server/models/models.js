@@ -47,6 +47,17 @@ const ContactType = sequelize.define('ContactType', {
     name: {type: DataTypes.STRING, allowNull: false},
 });
 
+const Agent = sequelize.define('Agent', {
+    Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: {type: DataTypes.STRING, allowNull: false},
+    phone: {type: DataTypes.STRING, allowNull: false}
+});
+
+const Speciality = sequelize.define('Speciality', {
+    Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: {type: DataTypes.STRING, allowNull: false},
+});
+
 const Deal = sequelize.define('Deal', {
     Id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     isClosed: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
@@ -64,6 +75,9 @@ User.hasMany(Deal);
 Deal.belongsTo(User);
 Property.hasMany(Deal);
 Deal.belongsTo(Property);
+
+Speciality.hasMany(Agent);
+Agent.belongsTo(Speciality);
 
 Property.belongsToMany(User, { through: Favorite });
 User.belongsToMany(Property, { through: Favorite });
@@ -83,5 +97,7 @@ module.exports = {
     Review,
     ContactType,
     Admin,
-    Favorite
+    Favorite,
+    Agent,
+    Speciality
 };

@@ -200,6 +200,7 @@ const PersonalInfoForm = () => {
           value={rooms}
           onChange={(e) => setRooms(e.target.value)}
         />
+        <input className={classes.input} type="file" />
         <Button
           className={classes.button}
           variant="contained"
