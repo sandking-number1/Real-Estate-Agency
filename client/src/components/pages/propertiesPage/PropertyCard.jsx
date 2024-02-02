@@ -23,8 +23,8 @@ const PropertyCard = ({ propertyData }) => {
       <Card
         style={{
           width: '300px',
-          height: '350px',
-          margin: '50px',
+          height: '400px',
+          margin: '25px',
           cursor: 'pointer'
         }}
         onClick={() => {
@@ -34,15 +34,20 @@ const PropertyCard = ({ propertyData }) => {
       >
         <CardMedia component="img" height="140" src={avatarUrl} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {propertyData.name}
+          <Typography gutterBottom variant="h6" component="div">
+          {propertyData.name.length > 30
+      ? propertyData.name.slice(0, 40) + '...'
+      : propertyData.name}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h6" component="div">
             ${propertyData.price}
           </Typography>
+          <Typography variant="subtitle1">{propertyData.PropertyType.name}</Typography>
           <Typography variant="body2">Комнат: {propertyData.rooms}</Typography>
-          <Typography variant="body2">{propertyData.PropertyType.name}</Typography>
-          <Typography variant="body2">{propertyData.description}</Typography>
+          <Typography variant="body2">{propertyData.description.length > 90
+      ? propertyData.description.slice(0, 90) + '...'
+      : propertyData.description}</Typography>
+      <Typography variant="caption">{new Date(propertyData.updatedAt).toLocaleString()}</Typography>
         </CardContent>
       </Card>
     </div>

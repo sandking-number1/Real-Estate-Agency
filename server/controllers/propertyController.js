@@ -96,6 +96,23 @@ class PropertyController {
         }
     }
 
+    async getRecentlyAdded(req, res) {
+        try {
+          const properties = await Property.findAll({
+            where: { isSold: false },
+            include: { model: PropertyType },
+            order: [['createdAt', 'DESC']],
+            limit: 4
+          });
+      
+          return res.json(properties);
+        } catch (err) {
+          console.error(err);
+      
+          return res.status(500).json({ error: 'Ошибка сервера.' });
+        }
+      }
+
     async getCatalogProperty(req, res) {
         const { propertyId } = req.params;
     
