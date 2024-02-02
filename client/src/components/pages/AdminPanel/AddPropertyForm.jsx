@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, MenuItem, FormControl, Select, InputLabel } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { useNavigate } from "react-router-dom";
 import { createProperty } from "../../api/propertiesApi"
@@ -84,14 +85,28 @@ const PersonalInfoForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [propertyData, setPropertyData] = useState({});
+  const [price, setPrice] = useState(0);
+  const [rooms, setRooms] = useState(0);
+  const [propertyTypes, setPropertyTypes] = useState([]);
+  const [propertyType, setPropertyType] = useState(1);
+
+
+  useEffect(() => {
+    axios
+    .get(`/properties/types`)
+    .then(response => {
+      setPropertyTypes(response.data); // Update properties state with search results
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
 
   const handleCreateProperty = (e) => {
     e.preventDefault();
 
     // Validate firstName, lastName, phone, and birthdate
-    if (!name || !description || !price) {
+    if (!name || !description || !price || !rooms) {
       // Handle empty fields
       return;
     }
@@ -104,7 +119,9 @@ const PersonalInfoForm = () => {
     createProperty({
         name: name,
         description: description,
-        price: price
+        price: price,
+        rooms: rooms,
+        PropertyTypeId: propertyType
       })
       .then((response) => {
         if (!response) {
@@ -128,12 +145,32 @@ const PersonalInfoForm = () => {
       });
   };
 
+  const handlePropertyTypeChange = event => {
+    setPropertyType(event.target.value);
+  }
+
   return (
     <div className={classes.formContainer}>
       <form className={classes.form}>
         <Typography variant="h4" component="h2" style={{ marginBottom: '2rem' }}>
           Добавить предложение
         </Typography>
+        
+        <FormControl style={{ width: "100%" }}>
+    <InputLabel id="combo-box-label">Тип:</InputLabel>
+      <Select className={classes.input}
+        labelId="combo-box-label"
+        value={propertyType}
+        onChange={handlePropertyTypeChange}
+      >
+        {propertyTypes.map((option) => (
+          <MenuItem key={option.Id} value={option.Id}>
+            {option.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+
         <TextField
           className={classes.input}
           label="Name"
@@ -155,7 +192,14 @@ const PersonalInfoForm = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
-    
+
+        <TextField
+          className={classes.input}
+          label="Rooms"
+          variant="outlined"
+          value={rooms}
+          onChange={(e) => setRooms(e.target.value)}
+        />
         <Button
           className={classes.button}
           variant="contained"
